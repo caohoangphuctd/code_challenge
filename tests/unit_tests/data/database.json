@@ -1,0 +1,50 @@
+{
+    "job": [
+        {
+            "discipline": "LPN/LVN",
+            "specialty": "ICU",
+            "state": "CA",
+            "pay_amount": 2500
+        },
+        {
+            "discipline": "RN",
+            "specialty": "ICU",
+            "state": "CA",
+            "pay_amount": 2000
+        },
+        {
+            "discipline": "RN",
+            "specialty": "DIALYSIS",
+            "state": "TX",
+            "pay_amount": 1500
+        }
+    ],
+    "worker": [
+        {
+            "discipline": "RN",
+            "specialties": [
+                "ICU", "PCU"
+            ],
+            "preferred_working_states": [
+                "CA"
+            ],
+            "avg_weekly_pay_amount": 2000
+        },
+        {
+            "discipline": "LPN/LVN",
+            "specialties": [
+                "ICU", "PCU"
+            ],
+            "preferred_working_states": [
+                "TX"
+            ],
+            "avg_weekly_pay_amount": 1500
+        }
+    ],
+    "applicant": [
+        {
+            "worker_id": 1,
+            "job_id": 3
+        }
+    ]
+}
