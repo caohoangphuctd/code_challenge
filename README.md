@@ -69,9 +69,13 @@ alembic upgrade head
 
 # Run app
 export POSTGRES_USER=postgres
-export POSTGRES_PASSWORD=password
-export POSTGRES_DB=regov
+export POSTGRES_PASSWORD=admin
+export POSTGRES_DB=opusmatch
 export POSTGRES_HOST=postgres
+export REDIS_HOST="192.168.40.55"
+export REDIS_PORT=6379
+export ACCOUNT_SID="ACc0880957bf081dff083ffd2135bcaf32"
+export AUTH_TOKEN="e57edf3267f4f556c90583517cfcc748"
 make run
 ```
 
@@ -84,9 +88,13 @@ make venv
 
 # import variables
 export POSTGRES_USER=postgres
-export POSTGRES_PASSWORD=password
-export POSTGRES_DB=regov
+export POSTGRES_PASSWORD=admin
+export POSTGRES_DB=opusmatch
 export POSTGRES_HOST=postgres
+export REDIS_HOST="192.168.40.55"
+export REDIS_PORT=6379
+export ACCOUNT_SID="ACc0880957bf081dff083ffd2135bcaf32"
+export AUTH_TOKEN="e57edf3267f4f556c90583517cfcc748"
 
 # Create new migration version
 make create_migration message="init regov"
@@ -101,6 +109,7 @@ alembic upgrade head
 # Install docker and docker-compose before run app via docker-compose.yml
 
 docker-compose up -d
+# Open localhost/api/v1
 ```
 
 # Run Testing
@@ -109,8 +118,12 @@ Create new database for test and update in .env file
 # import variables
 export POSTGRES_USER=postgres
 export POSTGRES_PASSWORD=admin
-export POSTGRES_DB=regov
-export POSTGRES_HOST="192.168.40.53"
+export POSTGRES_DB=opusmatch
+export POSTGRES_HOST=postgres
+export REDIS_HOST="192.168.40.55"
+export REDIS_PORT=6379
+export ACCOUNT_SID="ACc0880957bf081dff083ffd2135bcaf32"
+export AUTH_TOKEN="e57edf3267f4f556c90583517cfcc748"
 export PYTHONPATH=$PWD:app
 ```
 

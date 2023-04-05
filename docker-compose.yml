@@ -25,23 +25,23 @@ services:
     networks:
       - regov
 
-  # app:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   container_name: fastapi
-  #   restart: always
-  #   platform: linux/amd64 #for platform error on Apple M1 chips
-  #   env_file: .env
-  #   command: bash -c "
-  #       alembic upgrade head
-  #       && gunicorn --config ./gunicorn.conf.py app.main:app"
-  #   ports:
-  #     - 80:8000
-  #   depends_on:
-  #     - postgres
-  #   networks:
-  #     - regov
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: fastapi
+    restart: always
+    platform: linux/amd64 #for platform error on Apple M1 chips
+    env_file: .env
+    command: bash -c "
+        alembic upgrade head
+        && gunicorn --config ./gunicorn.conf.py app.main:app"
+    ports:
+      - 80:8000
+    depends_on:
+      - postgres
+    networks:
+      - regov
 
 volumes:
   regov_data:
