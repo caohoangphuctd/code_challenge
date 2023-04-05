@@ -78,7 +78,7 @@ export ACCOUNT_SID="ACc0880957bf081dff083ffd2135bcaf32"
 export AUTH_TOKEN="e57edf3267f4f556c90583517cfcc748"
 make run
 
-# Open `http://localhost:8000/api/v1#`
+Open `http://localhost:8000/api/v1#`
 ```
 
 
@@ -111,7 +111,7 @@ alembic upgrade head
 # Install docker and docker-compose before run app via docker-compose.yml
 
 docker-compose up -d
-# Open `http://localhost:8000/api/v1#`
+Open `http://localhost:8000/api/v1#`
 ```
 
 # Run Testing
