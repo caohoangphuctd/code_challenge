@@ -29,8 +29,8 @@ class Patients(BaseMixin, BaseModel):  # type: ignore
         Integer, nullable=False, primary_key=True,
         autoincrement=True, index=True
     )
-    first_name = Column(String(length=255), nullable=False)
-    last_name = Column(String(length=255), nullable=False)
+    first_name = Column(String(length=255), nullable=True)
+    last_name = Column(String(length=255), nullable=True)
     birth_date = Column(Date, nullable=False)
     id_number = Column(String(length=255), nullable=True)
     email = Column(String(length=255), nullable=True)
@@ -45,3 +45,36 @@ class Patients(BaseMixin, BaseModel):  # type: ignore
     user_patient = relationship(    # type: ignore
         "Users", back_populates="patient"
     )
+    patientgroup_patient = relationship(    # type: ignore
+        "PatientGroups", back_populates="patient"
+    )
+
+
+class Groups(BaseMixin, BaseModel):  # type: ignore
+    id = Column(
+        Integer, nullable=False, primary_key=True,
+        autoincrement=True, index=True
+    )
+    group_name = Column(String(length=255), nullable=False)
+    patientgroup_group = relationship(    # type: ignore
+        "PatientGroups", back_populates="group"
+    )
+    created_at = Column(DateTime, nullable=False, default=datetime.now)
+    updated_at = Column(DateTime, nullable=True)
+
+
+class PatientGroups(BaseMixin, BaseModel):  # type: ignore
+    id = Column(
+        Integer, nullable=False, primary_key=True,
+        autoincrement=True, index=True
+    )
+    group_id = Column(Integer, ForeignKey("groups.id"), nullable=False)
+    group = relationship(  # type: ignore
+        "Groups", back_populates="patientgroup_group", cascade="all,delete"
+    )
+    patient_id = Column(Integer, ForeignKey("patients.id"), nullable=False)
+    patient = relationship(  # type: ignore
+        "Patients", back_populates="patientgroup_patient", cascade="all,delete"
+    )
+    created_at = Column(DateTime, nullable=False, default=datetime.now)
+    updated_at = Column(DateTime, nullable=True)

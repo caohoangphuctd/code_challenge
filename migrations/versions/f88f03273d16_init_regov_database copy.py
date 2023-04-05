@@ -22,9 +22,9 @@ def upgrade():
                     sa.Column('id', sa.Integer(),
                               autoincrement=True, nullable=False),
                     sa.Column('first_name', sa.String(
-                        length=255), nullable=False),
+                        length=255), nullable=True),
                     sa.Column('last_name', sa.String(
-                        length=255), nullable=False),
+                        length=255), nullable=True),
                     sa.Column('birth_date', sa.Date(), nullable=False),
                     sa.Column('id_number', sa.String(
                         length=255), nullable=True),

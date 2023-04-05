@@ -1,6 +1,6 @@
 import re
 from typing import Optional
-from datetime import date
+from datetime import date, datetime
 from pydantic import BaseModel, EmailStr, validator, root_validator
 from app.exceptions.configure_exceptions import BothEmailAndPhoneAreNone
 
@@ -30,6 +30,11 @@ class CheckUserExistRequest(BaseModel):
         use_enum_values = True
 
 
+class CreateUserResponse(CheckUserExistRequest):
+    id: int
+    created_at: datetime
+
+
 class CreateUserRequest(BaseModel):
     otp: str
     email: Optional[EmailStr] = None
@@ -40,3 +45,31 @@ class CreateUserRequest(BaseModel):
         if not values.get("phone_number") and not values.get("email"):
             raise BothEmailAndPhoneAreNone()
         return values
+
+
+class CreateGroupRequest(BaseModel):
+    group_name: str
+
+
+class CreateGroupResponse(CreateGroupRequest):
+    id: int
+    created_at: datetime
+
+    class Config:
+        orm_mode = True
+
+
+class AddPatientToGroupRequest(BaseModel):
+    patient_id: int
+    group_id: int
+
+
+class CreateInfantOrChildRequest(CheckUserExistRequest):
+    first_name: Optional[str] = None    # type: ignore
+    last_name: Optional[str] = None     # type: ignore
+    parent_id: Optional[int]
+
+
+class CreateInfantOrChildResponse(CreateInfantOrChildRequest):
+    id: int
+    created_at: datetime
