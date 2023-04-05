@@ -59,6 +59,9 @@
 │   │   ├── data # data folder
 ```
 
+## Clean Architecture
+![the picture](./docs/regov.png)
+
 ## Run app locally
 ```shell
 # Follow instructions in [Set up PostgreSQL test database](#set-up-postgresql-test-database)
