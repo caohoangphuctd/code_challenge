@@ -1,1 +1,1 @@
-from app.controllers import users, auth  # noqa: F401
+from app.controllers import users, auth, groups, patients  # noqa: F401

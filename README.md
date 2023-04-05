@@ -12,10 +12,14 @@
 │   ├── apis # The views layer
 │   │   ├── __init__.py
 │   │   ├── users.py # APIs for users
+│   │   ├── groups.py # APIs for groups
+│   │   ├── patients.py # APIs for patients
 │   ├── controllers # The controllers layer
 │   │   ├── __init__.py
 │   │   ├── users.py # Controller for user
 │   │   ├── auth.py # Controller for authentication
+│   │   ├── groups.py # Controller for groups
+│   │   ├── patients.py # Controller for patients
 │   ├── database # The models layer
 │   │   ├── __init__.py
 │   │   ├── config.py # Config naming convention for database

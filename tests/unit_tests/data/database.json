@@ -1,50 +1,19 @@
 {
-    "job": [
+    "patients": [
         {
-            "discipline": "LPN/LVN",
-            "specialty": "ICU",
-            "state": "CA",
-            "pay_amount": 2500
-        },
-        {
-            "discipline": "RN",
-            "specialty": "ICU",
-            "state": "CA",
-            "pay_amount": 2000
-        },
-        {
-            "discipline": "RN",
-            "specialty": "DIALYSIS",
-            "state": "TX",
-            "pay_amount": 1500
+            "email": "caohoangphuctd@gmail.com",
+            "phone_number": "+84385751145",
+            "id_number": "206060360",
+            "birth_date": "2023-04-05",
+            "first_name": "Phuc",
+            "last_name": "Cao"
         }
     ],
-    "worker": [
+    "users": [
         {
-            "discipline": "RN",
-            "specialties": [
-                "ICU", "PCU"
-            ],
-            "preferred_working_states": [
-                "CA"
-            ],
-            "avg_weekly_pay_amount": 2000
-        },
-        {
-            "discipline": "LPN/LVN",
-            "specialties": [
-                "ICU", "PCU"
-            ],
-            "preferred_working_states": [
-                "TX"
-            ],
-            "avg_weekly_pay_amount": 1500
-        }
-    ],
-    "applicant": [
-        {
-            "worker_id": 1,
-            "job_id": 3
+            "is_admin": true,
+            "username": "caohoangphuctd@gmail.com",
+            "password": "$2b$12$kh.txMDWzUc2nFTek55O8.6VTSo2.BUO20eajO01Zhg94JqzR.FrK"
         }
     ]
 }

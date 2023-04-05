@@ -1,5 +1,5 @@
 import logging
-from typing import Dict, List
+from typing import Dict
 
 from redis.asyncio import Redis
 from fastapi import APIRouter, Depends, status, BackgroundTasks
@@ -13,9 +13,7 @@ from app.database.depends import create_session, get_redis_db
 from app.schemas import ApiResponse
 from app.schemas.users import (
     CheckUserExistRequest, CreateUserRequest, LoginRequest,
-    CreateGroupRequest, CreateGroupResponse, CreateUserResponse,
-    AddPatientToGroupRequest, CreateInfantOrChildRequest,
-    CreateInfantOrChildResponse
+    CreateUserResponse
 )
 
 logger = logging.getLogger("default")
@@ -28,7 +26,6 @@ CHECK_USERS_EXIST_STATUS_CODES = {
     200: {"description": "Check email or phone number valid"}
 }
 LOGIN_STATUS_CODES = {200: {"description": "Login successfully"}}
-CREATE_GROUP_STATUS_CODES = {201: {"description": "A group was created"}}
 
 
 @router.post(
@@ -119,79 +116,3 @@ async def create_user(
     elif schema.email:
         pass
     return await message_format(message=result, data=user)
-
-
-@router.post(
-    "/createInfantOrChild",
-    response_model=ApiResponse[CreateInfantOrChildResponse],
-    responses=CREATE_GROUP_STATUS_CODES,  # type: ignore
-    status_code=status.HTTP_201_CREATED,
-)
-async def create_infant_or_child(
-    schema: CreateInfantOrChildRequest,
-    db: AsyncSession = Depends(create_session),
-    _authorize: Dict = Depends(depend_admin_access_token)
-):
-    patient = await controllers.users.create_infant_or_child(db, schema)
-    return await message_format(data=patient)
-
-
-@router.post(
-    "/createGroup",
-    response_model=ApiResponse[CreateGroupResponse],
-    responses=CREATE_GROUP_STATUS_CODES,  # type: ignore
-    status_code=status.HTTP_201_CREATED,
-)
-async def create_group(
-    schema: CreateGroupRequest,
-    db: AsyncSession = Depends(create_session),
-    _authorize: Dict = Depends(depend_admin_access_token)
-):
-    group = await controllers.users.create_group(db, schema)
-    return await message_format(data=group)
-
-
-@router.post(
-    "/addGroup",
-    response_model=ApiResponse,
-    responses=CREATE_USERS_STATUS_CODES,  # type: ignore
-    status_code=status.HTTP_201_CREATED,
-)
-async def add_patient_to_group(
-    schema: AddPatientToGroupRequest,
-    db: AsyncSession = Depends(create_session),
-    _authorize: Dict = Depends(depend_admin_access_token)
-):
-    logger.info("Create user")
-    await controllers.users.add_patient_to_group(db, schema)
-    return await message_format(message="Added")
-
-
-@router.get(
-    "/patients",
-    response_model=ApiResponse[List[CreateInfantOrChildResponse]],
-    responses=CREATE_USERS_STATUS_CODES,  # type: ignore
-    status_code=status.HTTP_201_CREATED,
-)
-async def search_patients(
-    search: str,
-    db: AsyncSession = Depends(create_session),
-    _authorize: Dict = Depends(depend_admin_access_token)
-):
-    data = await controllers.users.search_patients(db, search)
-    return await message_format(data=data)
-
-
-@router.get(
-    "/patient/{patient_id}",
-    response_model=ApiResponse[CreateInfantOrChildResponse],
-    responses=CREATE_USERS_STATUS_CODES,  # type: ignore
-    status_code=status.HTTP_201_CREATED,
-)
-async def get_patient_by_id(
-    patient_id: int,
-    db: AsyncSession = Depends(create_session),
-    _authorize: Dict = Depends(depend_admin_access_token)
-):
-    data = await controllers.users.get_patient_by_id(db, patient_id)
-    return await message_format(data=data)
