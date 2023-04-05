@@ -4,6 +4,9 @@
 
 ```shell
 .
+├── question_2 # Code for question 2
+│   ├── exercise_1.py # exercise 1
+│   ├── exercise_2.py # exercise 2
 ├── migrations # Migrations database version
 ├── app # Main logic code
 │   ├── apis # The views layer
